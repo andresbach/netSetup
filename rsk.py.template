@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+# Este script me carga las librerias necesarias y me corrige errores de autocomplete
+# Tambien me conecta a la red en cuestion
+
+# exec(open("setup.py").read())
+
+from web3 import Web3
+import json
+
+exec(open("../Libraries/address.py").read())
+
+web3 = None
+web3 = Web3(Web3.HTTPProvider("http://IP:PORT"))
+
+try:
+    import readline
+except ImportError:
+    print("Module readline not available.")
+else:
+    import rlcompleter
+    readline.parse_and_bind("tab: complete")
+
+
+#sender = web3.eth.accounts[0]
+#extra = web3.eth.accounts[1]
