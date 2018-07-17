@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+# Este script me carga las librerias necesarias y me corrige errores de autocomplete
+# Tambien me conecta a la red en cuestion
+
+# exec(open("../../Setups/cardano.py").read())
+
+from web3 import Web3, HTTPProvider
+import json
+import os
+
+path = os.getcwd()
+os.chdir('~/Web3py')
+exec(open("./Libraries/address.py").read())
+os.chdir(path)
+del path
+
+web3 = None
+# KEVM
+web3 = Web3(HTTPProvider("https://kevm-testnet.iohkdev.io:8546/"))
+# MAINNET
+
+
+try:
+    import readline
+except ImportError:
+    print("Module readline not available.")
+else:
+    import rlcompleter
+    readline.parse_and_bind("tab: complete")
+
+# Cargo las cuentas en las que tengo fondos
+acc0 = ""
+acc1 = ""
+acc = [acc0, acc1]
+private_key0 = web3.toBytes(hexstr='')
+private_key1 = web3.toBytes(hexstr='')
+private_key = [private_key0, private_key1]
